@@ -10,11 +10,8 @@
         
 #         return dp[i]
 def solve(cost,n,dp):
-        if n==0 :
-                
-                return cost[0]
-        if n==1:
-                return cost[1]
+        if n==0 or n==1:
+                return cost[n]
         
         if dp[n]!=-1:
                 return dp[n]
