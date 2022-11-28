@@ -21,23 +21,46 @@ class Solution:
         # code here
         m=(10**9)+7
         
-        dp=[-1 for i in range (N+1)]
+        # dp=[-1 for i in range (N+1)]
         
-        dp[1]=0
+        # dp[1]=0
         
-        dp[2]=1
+        # dp[2]=1
+        
+        # for i in range (3,N+1):
+            
+        #     ans1=dp[i-1]%m
+            
+        #     ans2=dp[i-2]%m
+            
+        #     sum=ans1+ans2
+            
+        #     dp[i]=(((i-1)%m)*sum)%m
+            
+        # return dp[N]
+        
+        ### space optimized 
+        
+        
+        
+        prev2=0
+        
+        prev1=1
         
         for i in range (3,N+1):
             
-            ans1=dp[i-1]%m
+            first=prev1%m
             
-            ans2=dp[i-2]%m
+            second=prev2%m
             
-            sum=ans1+ans2
+            sum=first+second
             
-            dp[i]=(((i-1)%m)*sum)%m
+            ans=((i-1)*sum)%m
             
-        return dp[N]
+            prev2=prev1
+            prev1=ans 
+            
+        return prev1
             
         
         
