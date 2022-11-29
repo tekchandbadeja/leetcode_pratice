@@ -7,21 +7,34 @@ class Solution:
        
         # code here
         dp= [[0 for x in range(W + 1)] for x in range(n + 1)]
+        
+        
+        for w in range (wt[0],W+1):
+            if wt[0]<=W:
+                
+                dp[0][w]=val[0]
+                
+            else:
+                dp[0][w]=0
+                
+        for index in range (1,n):
+            
+            for w in range (W+1):
+                
+                not_take=dp[index-1][w]
+                
+                take=float('-inf')
+                
+                if wt[index]<=w:
+                    take=val[index]+dp[index-1][w-wt[index]]
+                    
+                dp[index][w]=max(not_take,take)
+                
+        return dp[n-1][W]
+                
+        
  
-    # Build table K[][] in bottom up manner
-        for i in range(n + 1):
-            for w in range(W + 1):
-                if i == 0 or w == 0:
-                    dp[i][w] = 0
-                elif wt[i-1] <= w:
-                    dp[i][w] = max(val[i-1]
-                          + dp[i-1][w-wt[i-1]], 
-                              dp[i-1][w])
-                else:
-                    dp[i][w] = dp[i-1][w]
- 
-        return dp[n][W]
-    ### lets try to get it
+    
     
     '''see here bag capacity is W means i can tak masimum w weight in my bag 
     there is given two array value array and weight array , the constranit is like that you want maximum value but 
