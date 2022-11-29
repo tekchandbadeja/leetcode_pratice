@@ -1,15 +1,15 @@
-def helper(row,col,dp):
-        if row==0 and col==0:   ### means mai neeche se chla aur top point pe aagya
-                return 1
-        if row<0 or col<0 :    ### means grid se out ho gye 
-                return 0
-        if dp[row][col]!=-1:
-                return dp[row][col]
-        up=helper(row-1,col,dp)
-        left=helper(row,col-1,dp)
+# def helper(row,col,dp):
+#         if row==0 and col==0:   ### means mai neeche se chla aur top point pe aagya
+#                 return 1
+#         if row<0 or col<0 :    ### means grid se out ho gye 
+#                 return 0
+#         if dp[row][col]!=-1:
+#                 return dp[row][col]
+#         up=helper(row-1,col,dp)
+#         left=helper(row,col-1,dp)
         
-        dp[row][col]= up+left
-        return dp[row][col]
+#         dp[row][col]= up+left
+#         return dp[row][col]
         
         
 class Solution:
@@ -17,8 +17,33 @@ class Solution:
         
         dp=[[-1 for i in range (n+1)] for j in range (m+1)]
         
-        ans=helper(m-1,n-1,dp)
-        return ans 
+        # ans=helper(m-1,n-1,dp)
+        # return ans 
+        
+        
+        dp[0][0]=1
+        
+        for i in range (m):
+                for j in range (n):
+                        if i==0 and j==0:
+                                dp[i][j]=1
+                        else:
+                                up=0
+                                left=0
+                                if i>0:
+                                        up=dp[i-1][j]
+                                        
+                                         ### this will only create problem when it go to negative 
+                                if j>0:
+                                        left=dp[i][j-1]
+                                
+                        
+                                dp[i][j]=up+left
+                        
+        return dp[m-1][n-1]
+        
+        
+
         
         
         
