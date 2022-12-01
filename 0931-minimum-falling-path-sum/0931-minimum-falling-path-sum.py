@@ -37,25 +37,23 @@ class Solution:
                         
                         up=matrix[i][j]+dp[i-1][j]
                         
-                        # left_dia=float('inf')
-                        # right_dia=float('inf')
+                        left_dia=float('inf')
+                        right_dia=float('inf')
                         
                         ###left digonal
                         
-                        left_dia=matrix[i][j]
+                        
                         
                         if j-1>=0:
-                                left_dia+=dp[i-1][j-1]
-                        else:
-                               left_dia+=float('inf') 
+                                left_dia=matrix[i][j]+dp[i-1][j-1]
+                        # else:
+                        #        left_dia+=float('inf') 
                         
                         ### right digonal 
                         
-                        right_dia=matrix[i][j]
                         if j+1<n:
-                                right_dia+=dp[i-1][j+1]
-                        else:
-                                right_dia+=float('inf')
+                                right_dia=matrix[i][j]+dp[i-1][j+1]
+                        
                         
                         dp[i][j]=min(up,left_dia,right_dia)
                         
