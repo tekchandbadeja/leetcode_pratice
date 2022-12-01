@@ -26,16 +26,17 @@ class Solution:
     def minFallingPathSum(self, matrix: List[List[int]]) -> int:
         
         n=len(matrix)
-        dp=[[0 for i in range (n)] for j in range (n)]
+        prev=[0]*n
+        curr=[0]*n
         
         for j in range (n):
-                dp[0][j]=matrix[0][j]    ### base case main first row ko matrix ke element se fill kar diya 
+                prev[j]=matrix[0][j]    ### base case main first row ko matrix ke element se fill kar diya 
                 
         for i in range (1,n):
                 
                 for j in range (n):
                         
-                        up=matrix[i][j]+dp[i-1][j]
+                        up=matrix[i][j]+prev[j]
                         
                         left_dia=float('inf')
                         right_dia=float('inf')
@@ -45,21 +46,23 @@ class Solution:
                         
                         
                         if j-1>=0:
-                                left_dia=matrix[i][j]+dp[i-1][j-1]
+                                left_dia=matrix[i][j]+prev[j-1]
                         # else:
                         #        left_dia+=float('inf') 
                         
                         ### right digonal 
                         
                         if j+1<n:
-                                right_dia=matrix[i][j]+dp[i-1][j+1]
+                                right_dia=matrix[i][j]+prev[j+1]
                         
                         
-                        dp[i][j]=min(up,left_dia,right_dia)
+                        curr[j]=min(up,left_dia,right_dia)
+                prev=curr
+                
                         
         min_ans=float('inf')
         for j in range (n):
-                min_ans=min(min_ans, dp[n-1][j])
+                min_ans=min(min_ans, prev[j])
         return min_ans 
         
         
@@ -125,3 +128,42 @@ space compllixity = recursion space (O(N))
 
 '''
         
+class Solution:
+    def minFallingPathSum(self, matrix: List[List[int]]) -> int:
+        
+        n=len(matrix)
+        dp=[[0 for i in range (n)] for j in range (n)]
+        
+        for j in range (n):
+                dp[0][j]=matrix[0][j]    ### base case main first row ko matrix ke element se fill kar diya 
+                
+        for i in range (1,n):
+                
+                for j in range (n):
+                        
+                        up=matrix[i][j]+dp[i-1][j]
+                        
+                        left_dia=float('inf')
+                        right_dia=float('inf')
+                        
+                        ###left digonal
+                        
+                        
+                        
+                        if j-1>=0:
+                                left_dia=matrix[i][j]+dp[i-1][j-1]
+                        # else:
+                        #        left_dia+=float('inf') 
+                        
+                        ### right digonal 
+                        
+                        if j+1<n:
+                                right_dia=matrix[i][j]+dp[i-1][j+1]
+                        
+                        
+                        dp[i][j]=min(up,left_dia,right_dia)
+                        
+        min_ans=float('inf')
+        for j in range (n):
+                min_ans=min(min_ans, dp[n-1][j])
+        return min_ans 
