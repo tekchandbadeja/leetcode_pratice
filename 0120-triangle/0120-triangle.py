@@ -1,23 +1,33 @@
-def helper(row,col,n,triangle,dp):
-        
-        if row==n-1:   ### base case ek he kyu liya soch skte ho tum , mere bhai reason ye hai ke mai chayee #down jau ya digonal down jau dono case me next row pe o jaaunga ,tabhe mai check kar lunga phle next row ko 
-                return triangle[row][col]
-        if dp[row][col]!=-1:
-                return dp[row][col]
-        down=helper(row+1,col,n,triangle,dp)+triangle[row][col]
-        
-        down_digonal=helper(row+1,col+1,n,triangle,dp)+triangle[row][col]
-        
-        dp[row][col]= min(down,down_digonal)
-        return dp[row][col]
+#always see this constraint triangle[i].length == triangle[i - 1].length + 1
+
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
         
         n=len(triangle)
         dp=[[-1 for i in range (n)] for j in range (n)]
-        ans=helper(0,0,n,triangle,dp)
         
-        return ans 
+        for j in range (n):                 #### base case ye to fix hoga 
+                dp[n-1][j]=triangle[n-1][j]
+                
+        ### ab mai last se second row se chna start karta hu 
+        
+        for i in range (n-2,-1,-1):  ### uper vaale row tak aa gya 
+                
+                for j in range (i,-1,-1):   ### i th row he element possible hai 
+                        
+                        down=triangle[i][j]+dp[i+1][j]
+                        
+                        down_digonal=triangle[i][j]+dp[i+1][j+1]
+                        
+                        
+                        dp[i][j]=min (down,down_digonal)
+        ### where we get answr when i come on top 
+        
+        return dp[0][0]
+                        
+                        
+                
+                
         
         
         
@@ -65,4 +75,27 @@ class Solution:
 # third row ,3 element .....
 # n th row , n element so and at every point 2 choices available go to down or go to digonal down so time complixity near around 2**(1+2+3+....+n)
 
-# and come to space complixity , here recursion space used         
+# and come to space complixity , here recursion space used   
+
+
+### with dp 
+# def helper(row,col,n,triangle,dp):
+        
+#         if row==n-1:   ### base case ek he kyu liya soch skte ho tum , mere bhai reason ye hai ke mai chayee #down jau ya digonal down jau dono case me next row pe o jaaunga ,tabhe mai check kar lunga phle next row ko 
+#                 return triangle[row][col]    
+#         if dp[row][col]!=-1:
+#                 return dp[row][col]
+#         down=helper(row+1,col,n,triangle,dp)+triangle[row][col]
+        
+#         down_digonal=helper(row+1,col+1,n,triangle,dp)+triangle[row][col]
+        
+#         dp[row][col]= min(down,down_digonal)
+#         return dp[row][col]
+# class Solution:
+#     def minimumTotal(self, triangle: List[List[int]]) -> int:
+        
+#         n=len(triangle)
+#         dp=[[-1 for i in range (n)] for j in range (n)]
+#         ans=helper(0,0,n,triangle,dp)
+        
+      #  return ans 
