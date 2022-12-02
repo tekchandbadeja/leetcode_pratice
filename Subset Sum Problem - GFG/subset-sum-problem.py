@@ -24,7 +24,7 @@ class Solution:
                 
                 take=False 
                 
-                if arr[i]<=sum:
+                if arr[i]<=target:
                     
                     take=dp[i-1][target-arr[i]]
                     
