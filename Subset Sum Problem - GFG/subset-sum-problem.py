@@ -29,7 +29,7 @@ class Solution:
         ### iam taking a dp
         dp=[[-1 for i in range (sum+1)] for j in range (N+1)]
         return helper(N-1,arr,sum,dp)
-        
+
 '''
  what you think how can we solve this problem very much obvious that 
  we try to find out all the subset or subsequences 
