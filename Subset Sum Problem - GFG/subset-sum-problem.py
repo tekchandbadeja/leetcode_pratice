@@ -1,35 +1,43 @@
 #User function Template for python3
-def helper(index,arr,target,dp):
-    
-    if target==0:
-        return True ##### means hamko mil gya target very simple base case 
-        
-    if index==0:   ### bhai last point p bollean type bana liya ke ab to bhai last value bachee hai ye equal
-                  ## ho gyee than ok otherwise we not get output from our function 
-        
-        return arr[0]==target
-        
-    if dp[index][target]!=-1:
-        return dp[index][target]
-        
-    not_take=helper(index-1,arr,target,dp)
-    
-    take=False 
-    
-    if arr[index]<=target:
-        
-        take=helper(index-1,arr,target-arr[index],dp)
-        
-    dp[index][target]= take or not_take
-    return dp[index][target]
+
 
 class Solution:
     def isSubsetSum (self, N, arr, sum):
         # code here 
         ### iam taking a dp
-        dp=[[-1 for i in range (sum+1)] for j in range (N+1)]
-        return helper(N-1,arr,sum,dp)
+        dp=[[0 for i in range (sum+1)] for j in range (N+1)]   ### abhi sab jgh 0 hai 
+        
+        ## first base case 
+        
+        for i in range (N):
+            
+            dp[i][0]=True 
+        
+        ### second base case     
+        dp[0][arr[0]]=True 
+        
+        for i in range (1,N):
+            
+            for target in range (1,sum+1):
+                
+                not_take=dp[i-1][target]
+                
+                take=False 
+                
+                if arr[i]<=sum:
+                    
+                    take=dp[i-1][target-arr[i]]
+                    
+                dp[i][target]=take or not_take 
+                
+        return dp[N-1][sum]
+            
+        
 
+
+# time complixity= O(N*target)
+
+# space complixity=(N*target)+recursion space (O(N))
 '''
  what you think how can we solve this problem very much obvious that 
  we try to find out all the subset or subsequences 
@@ -76,6 +84,39 @@ class Solution:
     
 time complixity = exponential (2**n)
 space complixity=rcursion /stack space 
+
+
+________________________********************____________________________________(with dp)
+def helper(index,arr,target,dp):
+    
+    if target==0:
+        return True ##### means hamko mil gya target very simple base case 
+        
+    if index==0:   ### bhai last point p bollean type bana liya ke ab to bhai last value bachee hai ye equal
+                  ## ho gyee than ok otherwise we not get output from our function 
+        
+        return arr[0]==target
+        
+    if dp[index][target]!=-1:
+        return dp[index][target]
+        
+    not_take=helper(index-1,arr,target,dp)
+    
+    take=False 
+    
+    if arr[index]<=target:
+        
+        take=helper(index-1,arr,target-arr[index],dp)
+        
+    dp[index][target]= take or not_take
+    return dp[index][target]
+
+class Solution:
+    def isSubsetSum (self, N, arr, sum):
+        # code here 
+        ### iam taking a dp
+        dp=[[-1 for i in range (sum+1)] for j in range (N+1)]
+        return helper(N-1,arr,sum,dp)
 '''
  
 
