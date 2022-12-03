@@ -13,8 +13,9 @@ class Solution:
             
             dp[i][0]=True 
         
-        ### second base case     
-        dp[0][arr[0]]=True 
+        ### second base case 
+        if arr[0]<=sum:
+            dp[0][arr[0]]=True 
         
         for i in range (1,N):
             
