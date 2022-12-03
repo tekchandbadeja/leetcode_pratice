@@ -48,6 +48,21 @@ def isSubsetSum (N, arr, sum):
                 dp[i][target]=take or not_take 
                 
         return dp[N-1][sum]
+
+# def sub_set_sum(arr,target,n):
+#         dp=[[0 for i in range (target+1)] for j in range (n+1)]
+#         for i in range (n):
+#                 dp[i][0]=True 
+#         if arr[0]<=target:
+#                 dp[0][arr[0]]=True 
+#         for i in range (1,n):
+#                 for j in range (1,target+1):
+#                         not_take=dp[i-1][j]
+#                         take=False 
+#                         if arr[i]<=target:
+#                                 take=dp[i-1][target-arr[i]]
+#                         dp[i][j]=not_take or take 
+#         return dp[n-1][target]
                         
                 
         
@@ -70,7 +85,9 @@ class Solution:
         else:
                 target=sum//2
                 #dp=[[-1 for i in range (target+1)] for j in range (n)]
+                #return sub_set_sum(nums,target,n)
                 return isSubsetSum (n,nums,target)
+        
                 
         
 #  '''      
