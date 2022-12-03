@@ -34,7 +34,7 @@ class Solution:
 	
 		mini=(10**9)+7
 		
-		for s1 in range (total_sum):
+		for s1 in range ((total_sum//2)+1):
 		    if dp[n-1][s1]==True:
 		        s2=total_sum-s1
 		        mini=min(mini,abs(s2-s1))
