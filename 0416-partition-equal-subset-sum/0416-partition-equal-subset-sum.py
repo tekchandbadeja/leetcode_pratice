@@ -61,7 +61,7 @@ def isSubsetSum (N, arr, sum):
 #                         take=False 
 #                         if arr[i]<=target:
 #                                 take=dp[i-1][target-arr[i]]
-#                         dp[i][j]=not_take or take 
+#                         dp[i][j]=take or not_take 
 #         return dp[n-1][target]
                         
                 
