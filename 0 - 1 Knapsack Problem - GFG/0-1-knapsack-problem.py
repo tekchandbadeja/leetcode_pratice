@@ -9,13 +9,13 @@ class Solution:
         dp= [[0 for x in range(W + 1)] for x in range(n + 1)]
         
         
-        for w in range (wt[0],W+1):
+        for i in range (wt[0],W+1):
             if wt[0]<=W:
                 
-                dp[0][w]=val[0]
+                dp[0][i]=val[0]
                 
             else:
-                dp[0][w]=0
+                dp[0][i]=0
                 
         for index in range (1,n):
             
@@ -36,7 +36,7 @@ class Solution:
  
     
     
-    '''see here bag capacity is W means i can tak masimum w weight in my bag 
+    '''see here bag capacity is W means i can tak max imum w weight in my bag 
     there is given two array value array and weight array , the constranit is like that you want maximum value but 
     weight not exceed the given capacity 
     
@@ -102,7 +102,9 @@ class Solution:
         
     dp[index][W] = max(pick,not_pick)
     return dp[index][W]
-            
+    
+    
+    time complixity is 2**n and space complixity is recursion space (without dp )
 class Solution:
     
     #Function to return max value that can be put in knapsack of capacity W.
