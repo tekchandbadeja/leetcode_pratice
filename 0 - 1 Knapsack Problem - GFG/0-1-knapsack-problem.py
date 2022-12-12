@@ -10,12 +10,12 @@ class Solution:
         
         
         for i in range (wt[0],W+1):
-            if wt[0]<=W:
+            dp[0][i]=val[0] # if wt[0]<=W:
                 
-                dp[0][i]=val[0]
+            #     dp[0][i]=val[0]
                 
-            else:
-                dp[0][i]=0
+            # else:
+            #     dp[0][i]=0
                 
         for index in range (1,n):
             
