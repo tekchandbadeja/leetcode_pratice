@@ -8,7 +8,9 @@ def largest( arr, n):
     return largest
     
 
-
+# This is the best optimal approach for this Question 
+# Time Compleixity : Order (n)
+# Space Complexity : size of list 
 
 
 #{ 
