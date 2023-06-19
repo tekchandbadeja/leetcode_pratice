@@ -4,10 +4,9 @@ def sumElement(arr,n):
     #code here
     ans=0
     for i in range (n):
-        ans+=arr[i]
-        
+        ans=ans+arr[i]
     return ans 
-
+    
 
 #{ 
  # Driver Code Starts
